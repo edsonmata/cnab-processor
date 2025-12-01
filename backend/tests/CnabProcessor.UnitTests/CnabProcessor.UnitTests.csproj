@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Testing frameworks -->
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="xunit" Version="2.6.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.4">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="6.0.4">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+
+    <!-- Mocking framework (optional but recommended) -->
+    <PackageReference Include="Moq" Version="4.20.70" />
+
+    <!-- Entity Framework Core InMemory for testing -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Reference to Domain project -->
+    <ProjectReference Include="..\..\src\CnabProcessor.Api\CnabProcessor.Api.csproj" />
+    <ProjectReference Include="..\..\src\CnabProcessor.Domain\CnabProcessor.Domain.csproj" />
+    <ProjectReference Include="..\..\src\CnabProcessor.Infrastructure\CnabProcessor.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
