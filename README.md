@@ -10,6 +10,11 @@ Full-stack CNAB processor: upload fixed-width CNAB files, parse them, import int
 - React UI for upload, listing, and dashboard
 - Swagger docs, Docker Compose, and automated tests
 
+## Screenshots
+![Login](frontend/public/screenshots/login.png)
+![Upload](frontend/public/screenshots/upload.png)
+![Transactions](frontend/public/screenshots/transactions.png)
+
 ## Tech Stack
 - Backend: .NET 8, ASP.NET Core Web API, EF Core, SQL Server, Serilog, xUnit
 - Frontend: React 18 + Vite, vanilla CSS, Fetch API
