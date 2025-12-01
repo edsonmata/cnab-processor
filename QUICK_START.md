@@ -1,18 +1,18 @@
-# ??? Quick Start Guide
+# Quick Start Guide
 
 Get CNAB Processor running in 3 minutes!
 
 ---
 
-## ???? Prerequisites
+## Prerequisites
 
-- ??? Docker installed
-- ??? Docker Compose installed
-- ??? 4GB RAM available
+- Docker installed
+- Docker Compose installed
+- 4GB RAM available
 
 ---
 
-## ???? 3-Step Setup
+## 3-Step Setup
 
 ### Step 1: Clone & Navigate
 
@@ -24,29 +24,29 @@ cd cnab-processor
 ### Step 2: Start Everything
 
 ```bash
-docker-compose up --build
+docker-compose up --build -d
 ```
 
 ### Step 3: Wait & Access
 
-??? **Wait 60 seconds** for SQL Server initialization
+ **Wait 60 seconds** for SQL Server initialization
 
 Then access:
-- ???? **Frontend**: http://localhost:3000 (Login page)
-- ???? **Backend**: http://localhost:5099
-- ???? **Swagger**: http://localhost:5099/swagger
+- **Frontend**: http://localhost:3000 (Login page)
+- **Backend**: http://localhost:5099
+- **Swagger**: http://localhost:5099/swagger
 
 ### Step 4: Login
 
 Use these credentials:
-- ???? **Username**: `admin`
-- ???? **Password**: `Admin@123`
+- **Username**: `admin`
+- **Password**: `Admin@123`
 
-Or just click the "???? Admin" button on the login page!
+Or just click the " Admin" button on the login page!
 
 ---
 
-## ??? Verify Installation
+## Verify Installation
 
 ```bash
 # Check if containers are running
@@ -69,19 +69,19 @@ xdg-open http://localhost:3000  # Linux
 
 ---
 
-## ???? Try It Out
+## Try It Out
 
 ### 1. Login to the Application
 
 1. Open http://localhost:3000
-2. Click "???? Admin" button (auto-fills credentials)
+2. Click " Admin" button (auto-fills credentials)
 3. Click "Login"
-4. You're in! ????
+4. You're in! 
 
 ### 2. Upload a Sample File
 
 **Option A: Via UI**
-1. Click "???? Upload" tab
+1. Click " Upload" tab
 2. Drop a CNAB file or click to browse
 3. Watch it process!
 
@@ -89,9 +89,9 @@ xdg-open http://localhost:3000  # Linux
 
 Create `sample.txt`:
 ```
-3201903010000014200096206760174753****3153141358JO??O MACEDO   BAR DO JO??O
-5201903010000013200556418150633648****0099153453MARIA SILVA   MERCEARIA 3 IRM??OS
-2201903010000012200845152540736777****1313172712MARCOS PEREIRA LOJA DO ?? - MATRIZ
+3201903010000014200096206760174753****3153141358JOO MACEDO   BAR DO JOO
+5201903010000013200556418150633648****0099153453MARIA SILVA   MERCEARIA 3 IRMOS
+2201903010000012200845152540736777****1313172712MARCOS PEREIRA LOJA DO  - MATRIZ
 ```
 
 Then upload via UI or get token first:
@@ -109,11 +109,11 @@ curl -X POST http://localhost:5099/api/cnab/upload \
 
 ### 3. View Results
 
-Click "???? Transactions" tab and see your data!
+Click " Transactions" tab and see your data!
 
 ---
 
-## ???? Stop Application
+## Stop Application
 
 ```bash
 docker-compose down
@@ -121,7 +121,7 @@ docker-compose down
 
 ---
 
-## ???? Restart Application
+## Restart Application
 
 ```bash
 docker-compose up -d
@@ -129,7 +129,7 @@ docker-compose up -d
 
 ---
 
-## ???? Clean Everything
+## Clean Everything
 
 ```bash
 docker-compose down -v
@@ -138,7 +138,7 @@ docker system prune -f
 
 ---
 
-## ???? Troubleshooting
+## Troubleshooting
 
 ### SQL Server not starting?
 
@@ -172,7 +172,7 @@ lsof -i :3000                 # macOS/Linux
 
 ---
 
-## ???? Next Steps
+## Next Steps
 
 - Read full [README.md](README.md) for detailed documentation
 - Check [API_GUIDE.md](API_GUIDE.md) for API reference
@@ -180,7 +180,7 @@ lsof -i :3000                 # macOS/Linux
 
 ---
 
-## ???? Common Commands
+## Common Commands
 
 ```bash
 # View all logs
@@ -200,4 +200,8 @@ docker-compose down
 ```
 
 ---
+
+
+
+
 

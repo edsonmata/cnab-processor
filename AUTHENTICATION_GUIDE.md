@@ -1,16 +1,16 @@
-# ???? JWT Authentication Guide - CNAB Processor
+# JWT Authentication Guide - CNAB Processor
 
-## ???? Summary
+## Summary
 
 JWT Bearer authentication is **ALWAYS ENABLED** and ready for production use.
 
-## ??? Current Status: REQUIRED Authentication (Always Enabled)
+## Current Status: REQUIRED Authentication (Always Enabled)
 
 **ALL CNAB endpoints require authentication!** This ensures:
-- ???? Secure API access
-- ??? Production-ready authentication
-- ??? Protected file upload and data access
-- ??? Proper user tracking and authorization
+- Secure API access
+- Production-ready authentication
+- Protected file upload and data access
+- Proper user tracking and authorization
 
 **Public Endpoints (No auth required):**
 - `/api/health` - Health check
@@ -19,27 +19,27 @@ JWT Bearer authentication is **ALWAYS ENABLED** and ready for production use.
 
 ---
 
-## ???? Frontend Login Page
+## Frontend Login Page
 
 The application includes a complete login interface at **http://localhost:3000**
 
 ### Features:
-- ??? Modern, responsive login page (no CSS framework!)
-- ??? Auto-fill buttons for demo credentials
-- ??? Automatic token management
-- ??? Token expiration handling (60 minutes)
-- ??? Auto-logout when token expires
-- ??? Secure JWT storage in localStorage
+- Modern, responsive login page (no CSS framework!)
+- Auto-fill buttons for demo credentials
+- Automatic token management
+- Token expiration handling (60 minutes)
+- Auto-logout when token expires
+- Secure JWT storage in localStorage
 
 ### Quick Login:
 1. Access **http://localhost:3000**
-2. Click the **"???? Admin"** button (auto-fills credentials)
+2. Click the **" Admin"** button (auto-fills credentials)
 3. Click **"Login"**
 4. You're in! Upload files and view transactions
 
 ---
 
-## ???? How to Use JWT Authentication via API
+## How to Use JWT Authentication via API
 
 ### Step 1: Start the Application
 
@@ -79,13 +79,13 @@ Access:
 }
 ```
 
-6. **???? COPY the `token` field value** (the entire long text)
+6. ** COPY the `token` field value** (the entire long text)
 
 ---
 
 ### Step 3: Authorize in Swagger
 
-1. **Click the "Authorize" button ????** (top right corner of the page)
+1. **Click the "Authorize" button ** (top right corner of the page)
 
 2. **A window will open. In the "Value" field, type:**
 
@@ -104,7 +104,7 @@ Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9y
 
 4. **Click "Close"**
 
-5. **Done!** Now the padlock ???? next to each endpoint will be closed, indicating that you are authenticated.
+5. **Done!** Now the padlock  next to each endpoint will be closed, indicating that you are authenticated.
 
 ---
 
@@ -112,11 +112,11 @@ Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9y
 
 Now you can test any endpoint:
 
-- ??? `POST /api/cnab/upload` - Upload CNAB file
-- ??? `GET /api/cnab/transactions` - List transactions
-- ??? `GET /api/cnab/transactions/paged` - List with pagination
-- ??? `GET /api/cnab/balances` - View balances by store
-- ??? `GET /api/cnab/store/{storeName}` - Transactions for a specific store
+- `POST /api/cnab/upload` - Upload CNAB file
+- `GET /api/cnab/transactions` - List transactions
+- `GET /api/cnab/transactions/paged` - List with pagination
+- `GET /api/cnab/balances` - View balances by store
+- `GET /api/cnab/store/{storeName}` - Transactions for a specific store
 
 All requests now automatically include the header:
 ```
@@ -125,7 +125,7 @@ Authorization: Bearer {your-token}
 
 ---
 
-## ???? Available Credentials
+## Available Credentials
 
 ### Administrator User
 - **Username:** `admin`
@@ -135,11 +135,11 @@ Authorization: Bearer {your-token}
 - **Username:** `user`
 - **Password:** `User@123`
 
-**???? Tip:** You can see the credentials at endpoint `GET /api/auth/demo-credentials` (public, does not require authentication)
+** Tip:** You can see the credentials at endpoint `GET /api/auth/demo-credentials` (public, does not require authentication)
 
 ---
 
-## ???? Testing WITHOUT Swagger (via curl)
+## Testing WITHOUT Swagger (via curl)
 
 ### 1. Login
 ```bash
@@ -179,7 +179,7 @@ curl "http://localhost:5099/api/cnab/transactions/paged?pageNumber=1&pageSize=10
 
 ---
 
-## ??? What Happens Without Authentication?
+## What Happens Without Authentication?
 
 If you try to access a protected endpoint without the token (or with invalid/expired token):
 
@@ -202,26 +202,26 @@ If you try to access a protected endpoint without the token (or with invalid/exp
 
 ---
 
-## ???? Always Public Endpoints (Do Not Require Authentication)
+## Always Public Endpoints (Do Not Require Authentication)
 
 These endpoints are always public, even with authentication enabled:
 
-- ??? `GET /api/health` - Health check
-- ??? `POST /api/auth/login` - Login
-- ??? `GET /api/auth/demo-credentials` - View demo credentials
+- `GET /api/health` - Health check
+- `POST /api/auth/login` - Login
+- `GET /api/auth/demo-credentials` - View demo credentials
 
 ---
 
-## ?????? Token Expiration
+## Token Expiration
 
 - **Duration:** 60 minutes (1 hour)
-- **Configurable in:** `appsettings.json` ??? `JwtSettings.ExpiryMinutes`
+- **Configurable in:** `appsettings.json`  `JwtSettings.ExpiryMinutes`
 
 When the token expires, you need to login again.
 
 ---
 
-## ???? Configuration (appsettings.json)
+## Configuration (appsettings.json)
 
 ```json
 {
@@ -238,7 +238,7 @@ When the token expires, you need to login again.
 }
 ```
 
-?????? **IMPORTANT:** Before going to production:
+ **IMPORTANT:** Before going to production:
 1. Change the `SecretKey` to a stronger and more secure key
 2. Use environment variable or Azure Key Vault
 3. Implement a real user system with database
@@ -247,7 +247,7 @@ When the token expires, you need to login again.
 
 ---
 
-## ???? Troubleshooting
+## Troubleshooting
 
 ### Problem: "401 Unauthorized" even after login
 
@@ -260,8 +260,8 @@ When the token expires, you need to login again.
 ### Problem: Swagger does not send the token automatically
 
 **Solution:**
-1. Click "Authorize" ????
-2. Check if the padlock is closed ????
+1. Click "Authorize" 
+2. Check if the padlock is closed 
 3. If not, do the authorization process again
 
 ### Problem: Token is not accepted
@@ -273,58 +273,62 @@ When the token expires, you need to login again.
 
 ---
 
-## ???? Visual Summary
+## Visual Summary
 
 ### Frontend Flow (Web UI):
 ```
-?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
-???  1. Access http://localhost:3000                            ???
-???     ??? Login page appears automatically                      ???
-???                                                             ???
-???     ??????                                                       ???
-???                                                             ???
-???  2. Click "???? Admin" or "???? User" button                   ???
-???     (auto-fills credentials)                                ???
-???                                                             ???
-???     ??????                                                       ???
-???                                                             ???
-???  3. Click "Login"                                           ???
-???     ??? Token automatically stored                            ???
-???                                                             ???
-???     ??????                                                       ???
-???                                                             ???
-???  4. Access main application ????                              ???
-???     ??? Upload CNAB files                                    ???
-???     ??? View transactions                                    ???
-???     ??? See balances                                         ???
-???     ??? Auto-logout after 60 minutes                         ???
-?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+
+  1. Access http://localhost:3000                            
+      Login page appears automatically                      
+                                                             
+                                                            
+                                                             
+  2. Click " Admin" or " User" button                   
+     (auto-fills credentials)                                
+                                                             
+                                                            
+                                                             
+  3. Click "Login"                                           
+      Token automatically stored                            
+                                                             
+                                                            
+                                                             
+  4. Access main application                               
+      Upload CNAB files                                    
+      View transactions                                    
+      See balances                                         
+      Auto-logout after 60 minutes                         
+
 ```
 
 ### API Flow (Swagger/curl):
 ```
-?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
-???  1. POST /api/auth/login                                    ???
-???     { "username": "admin", "password": "Admin@123" }        ???
-???                                                             ???
-???     ??????                                                       ???
-???                                                             ???
-???  2. Response: { "token": "eyJhbGc..." }                     ???
-???     Copy the token value                                    ???
-???                                                             ???
-???     ??????                                                       ???
-???                                                             ???
-???  3. Click "Authorize" ???? in Swagger                         ???
-???     Paste: Bearer eyJhbGc...                               ???
-???                                                             ???
-???     ??????                                                       ???
-???                                                             ???
-???  4. Use protected endpoints ????                              ???
-???     ??? Upload file                                          ???
-???     ??? List transactions                                    ???
-???     ??? View balances                                        ???
-?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+
+  1. POST /api/auth/login                                    
+     { "username": "admin", "password": "Admin@123" }        
+                                                             
+                                                            
+                                                             
+  2. Response: { "token": "eyJhbGc..." }                     
+     Copy the token value                                    
+                                                             
+                                                            
+                                                             
+  3. Click "Authorize"  in Swagger                         
+     Paste: Bearer eyJhbGc...                               
+                                                             
+                                                            
+                                                             
+  4. Use protected endpoints                               
+      Upload file                                          
+      List transactions                                    
+      View balances                                        
+
 ```
 
 ---
+
+
+
+
 

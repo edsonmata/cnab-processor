@@ -24,7 +24,7 @@
 ## Database & Performance
 - **Database:** SQL Server
 - **Database Design & Optimization:** Strategic Indexing, Query Optimization
-- **Performance Optimization:** 10x performance improvement (50s → 5s)
+- **Performance Optimization:** 10x performance improvement (50s ??? 5s)
 - **Transaction Management:** EF Core Transactions
 - **Change Tracking:** Entity Framework Core Change Tracking
 
@@ -47,3 +47,4 @@
 - **Architecture Pattern:** Clean Architecture (4 Layers: API, Domain, Infrastructure, Data)
 - **Design Patterns:** Repository Pattern, Dependency Injection, Factory Pattern
 - **Code Quality:** Clean Code, SOLID Principles Implementation
+

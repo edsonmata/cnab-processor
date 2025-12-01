@@ -1,15 +1,15 @@
-# ??? Performance Optimization - Bulk Insert
+# Performance Optimization - Bulk Insert
 
-## ???? Problem Solved
+## Problem Solved
 
-**Before**: Uploading a 10 MB file (~130,000 transactions) took **30-60 seconds** ??????
-**After**: Same file now takes **3-8 seconds**! ????
+**Before**: Uploading a 10 MB file (~130,000 transactions) took **30-60 seconds** 
+**After**: Same file now takes **3-8 seconds**! 
 
-**Performance Gain**: **10x faster!** ???
+**Performance Gain**: **10x faster!** 
 
 ---
 
-## ??????? What Was Implemented
+## What Was Implemented
 
 ### 1. **Bulk Insert with Batching**
 
@@ -64,9 +64,9 @@ catch
 ```
 
 **Benefits**:
-- ??? **Atomicity**: All or nothing (rollback on error)
-- ??? **Consistency**: Database always in valid state
-- ??? **Faster**: Single transaction overhead
+- **Atomicity**: All or nothing (rollback on error)
+- **Consistency**: Database always in valid state
+- **Faster**: Single transaction overhead
 
 ---
 
@@ -85,7 +85,7 @@ _context.ChangeTracker.Clear();
 
 ---
 
-## ???? Performance Comparison
+## Performance Comparison
 
 | File Size | Records | Before (Old) | After (Optimized) | Speedup |
 |-----------|---------|--------------|-------------------|---------|
@@ -97,7 +97,7 @@ _context.ChangeTracker.Clear();
 
 ---
 
-## ???? How It Works
+## How It Works
 
 ### Automatic Mode Selection
 
@@ -106,7 +106,7 @@ The controller automatically chooses the best method:
 ```csharp
 if (transactionList.Count >= 1000)
 {
-    // ???? OPTIMIZED: Use BulkInsertAsync for large files
+    //  OPTIMIZED: Use BulkInsertAsync for large files
     insertedCount = await _repository.BulkInsertAsync(
         transactionList,
         batchSize: 5000,
@@ -122,11 +122,11 @@ else
 
 **Decision Logic**:
 - **< 1,000 records**: Use regular `AddRangeAsync` (fast enough)
-- **??? 1,000 records**: Use optimized `BulkInsertAsync` (10x faster!)
+- ** 1,000 records**: Use optimized `BulkInsertAsync` (10x faster!)
 
 ---
 
-## ???? Progress Tracking
+## Progress Tracking
 
 During bulk insert, you'll see detailed logs:
 
@@ -137,7 +137,7 @@ During bulk insert, you'll see detailed logs:
 [INFO] Batch 2/26 completed (7.7%) - 10,000/130,000 records inserted
 ...
 [INFO] Batch 26/26 completed (100.0%) - 130,000/130,000 records inserted
-[INFO] ??? BULK INSERT COMPLETED: 130,000 records in 5.23s (24,856 records/sec)
+[INFO]  BULK INSERT COMPLETED: 130,000 records in 5.23s (24,856 records/sec)
 ```
 
 **Metrics Provided**:
@@ -148,7 +148,7 @@ During bulk insert, you'll see detailed logs:
 
 ---
 
-## ???? Testing the Optimization
+## Testing the Optimization
 
 ### 1. Create a Large Test File
 
@@ -164,8 +164,8 @@ $lines = 1..130000 | ForEach-Object {
     $cpf = "09620676017"
     $card = "4753****3153"
     $time = "141358"
-    $owner = "JO??O MACEDO   "
-    $store = "BAR DO JO??O       "
+    $owner = "JOO MACEDO   "
+    $store = "BAR DO JOO       "
 
     "$type$date$amount$cpf$card$time$owner$store"
 }
@@ -188,8 +188,8 @@ for i in {1..130000}; do
     CPF="09620676017"
     CARD="4753****3153"
     TIME="141358"
-    OWNER="JO??O MACEDO   "
-    STORE="BAR DO JO??O       "
+    OWNER="JOO MACEDO   "
+    STORE="BAR DO JOO       "
 
     echo "${TYPE}${DATE}${AMOUNT}${CPF}${CARD}${TIME}${OWNER}${STORE}" >> CNAB_LARGE.txt
 done
@@ -221,7 +221,7 @@ docker logs -f cnab-backend
 
 ---
 
-## ???? Advanced Configuration
+## Advanced Configuration
 
 ### Adjust Batch Size
 
@@ -242,7 +242,7 @@ await _repository.BulkInsertAsync(transactions, batchSize: 2000);
 
 ---
 
-## ???? Technical Details
+## Technical Details
 
 ### Files Modified
 
@@ -256,11 +256,11 @@ await _repository.BulkInsertAsync(transactions, batchSize: 2000);
 
 3. **Controller**:
    - [CnabController.cs](backend/src/CnabProcessor.Api/Controllers/CnabController.cs#L99-L120)
-   - Auto-selects optimized insert for files with ??? 1,000 records
+   - Auto-selects optimized insert for files with  1,000 records
 
 ---
 
-## ???? Key Learnings
+## Key Learnings
 
 ### Why EF Core is Slow for Bulk Inserts
 
@@ -285,36 +285,36 @@ await _repository.BulkInsertAsync(transactions, batchSize: 2000);
 
 ---
 
-## ??? Validation
+## Validation
 
 The optimization maintains **100% data integrity**:
 
-- ??? All transactions validated before insert
-- ??? Invalid transactions skipped (logged)
-- ??? Atomic operation (all or nothing)
-- ??? Database constraints enforced
-- ??? Indexes updated correctly
+- All transactions validated before insert
+- Invalid transactions skipped (logged)
+- Atomic operation (all or nothing)
+- Database constraints enforced
+- Indexes updated correctly
 
 ---
 
-## ???? Frontend Pagination - Display Optimization
+## Frontend Pagination - Display Optimization
 
 To complement the backend bulk insert optimization, the frontend includes **per-store pagination** to efficiently display large transaction datasets.
 
 ### Problem Solved
 
-**Before**: All transactions (18,000+) displayed on a single page ??? Very slow rendering
-**After**: Paginated view with 50 transactions per page ??? Instant rendering
+**Before**: All transactions (18,000+) displayed on a single page  Very slow rendering
+**After**: Paginated view with 50 transactions per page  Instant rendering
 
 ### Implementation Details
 
 **Features**:
-- ??? **Per-store pagination**: Each store maintains independent pagination state
-- ??? **50 items per page**: Optimized for rendering performance
-- ??? **Navigation controls**: First, Previous, Next, Last page buttons
-- ??? **Current page indicator**: Shows "Page X of Y"
-- ??? **UI blocking during upload**: Pagination disabled while data is loading
-- ??? **Responsive design**: Works on all screen sizes
+- **Per-store pagination**: Each store maintains independent pagination state
+- **50 items per page**: Optimized for rendering performance
+- **Navigation controls**: First, Previous, Next, Last page buttons
+- **Current page indicator**: Shows "Page X of Y"
+- **UI blocking during upload**: Pagination disabled while data is loading
+- **Responsive design**: Works on all screen sizes
 
 ### Technical Details
 
@@ -375,7 +375,7 @@ const transactions = store.transactions.slice(startIndex, endIndex);  // Slice a
 
 ---
 
-## ???? Future Improvements (Optional)
+## Future Improvements (Optional)
 
 If you need even better performance:
 
@@ -393,7 +393,7 @@ If you need even better performance:
 
 ---
 
-## ???? Questions?
+## Questions?
 
 If you encounter performance issues:
 
@@ -406,7 +406,7 @@ If you encounter performance issues:
 
 ---
 
-## ???? Test Coverage for BulkInsertAsync
+## Test Coverage for BulkInsertAsync
 
 To ensure the optimization works correctly and reliably, we have **17 comprehensive unit tests** covering:
 
@@ -455,7 +455,7 @@ Passed!  - Failed:     0, Passed:    17, Skipped:     0, Total:    17
 
 ---
 
-## ???? Test Coverage for Paged Endpoints
+## Test Coverage for Paged Endpoints
 
 To ensure pagination works correctly across different scenarios, we have **19 comprehensive integration tests** covering:
 
@@ -531,4 +531,8 @@ Both return:
 ```
 
 ---
+
+
+
+
 

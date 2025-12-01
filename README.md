@@ -23,7 +23,7 @@ Clean Architecture: Api (controllers), Domain (entities/services), Infrastructur
 - Optional: .NET 8 SDK, Node.js 20+ if running without Docker
 
 ## Quick Start (Docker)
-1. `docker-compose up --build`
+1. `docker-compose up --build -d`
 2. Wait ~60 seconds for SQL Server to finish initializing.
 3. Frontend: http://localhost:3000
 4. API: http://localhost:5099 (Swagger at /swagger, health at /api/health)
@@ -60,4 +60,8 @@ See `docker-compose.yml` for defaults.
 - `AUTHENTICATION_GUIDE.md`
 - `TECH_STACK.md`
 - `PERFORMANCE_OPTIMIZATION.md`
+
+
+
+
 
