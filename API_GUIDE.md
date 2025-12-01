@@ -1,10 +1,10 @@
-# 📡 CNAB Processor - API Guide
+# ???? CNAB Processor - API Guide
 
 Complete guide for consuming the CNAB Processor REST API.
 
 ---
 
-## 🌐 Base URL
+## ???? Base URL
 
 ```
 http://localhost:5099/api
@@ -12,7 +12,7 @@ http://localhost:5099/api
 
 ---
 
-## 📋 Table of Contents
+## ???? Table of Contents
 
 1. [Authentication](#authentication)
 2. [Endpoints Overview](#endpoints-overview)
@@ -24,7 +24,7 @@ http://localhost:5099/api
 
 ---
 
-## 🔐 Authentication
+## ???? Authentication
 
 **JWT Bearer authentication is REQUIRED** for all endpoints (except `/api/health` and `/api/auth/*`).
 
@@ -71,7 +71,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 ---
 
-## 📊 Endpoints Overview
+## ???? Endpoints Overview
 
 ### Authentication Endpoints (No Auth Required)
 
@@ -81,7 +81,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 | `POST` | `/api/auth/login` | Login and get JWT token |
 | `GET` | `/api/auth/demo-credentials` | View demo credentials |
 
-### CNAB Endpoints (Auth Required 🔒)
+### CNAB Endpoints (Auth Required ????)
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -94,7 +94,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 ---
 
-## 📖 Detailed Endpoint Documentation
+## ???? Detailed Endpoint Documentation
 
 ### Authentication Endpoints
 
@@ -249,7 +249,7 @@ Content-Type: application/json
 
 Upload and process a CNAB transaction file.
 
-**🔒 Authentication Required**
+**???? Authentication Required**
 
 **Endpoint:**
 ```http
@@ -276,9 +276,9 @@ Each line must be exactly 81 characters:
 
 **Example CNAB File Content:**
 ```
-3201903010000014200096206760174753****3153141358JOÃO MACEDO   BAR DO JOÃO       
-5201903010000013200556418150633648****0099153453MARIA SILVA   MERCEARIA 3 IRMÃOS
-2201903010000012200845152540736777****1313172712MARCOS PEREIRA LOJA DO Ó - MATRIZ
+3201903010000014200096206760174753****3153141358JO??O MACEDO   BAR DO JO??O       
+5201903010000013200556418150633648****0099153453MARIA SILVA   MERCEARIA 3 IRM??OS
+2201903010000012200845152540736777****1313172712MARCOS PEREIRA LOJA DO ?? - MATRIZ
 ```
 
 **Response (200 OK):**
@@ -327,7 +327,7 @@ Each line must be exactly 81 characters:
 
 Retrieve all imported transactions, ordered by date (descending).
 
-**🔒 Authentication Required**
+**???? Authentication Required**
 
 **Endpoint:**
 ```http
@@ -357,13 +357,13 @@ None
     "signedAmount": -142.00,
     "cpf": "09620676017",
     "cardNumber": "4753****3153",
-    "storeOwner": "JOÃO MACEDO",
-    "storeName": "BAR DO JOÃO"
+    "storeOwner": "JO??O MACEDO",
+    "storeName": "BAR DO JO??O"
   },
   {
     "id": 2,
     "type": "1",
-    "typeDescription": "Débito",
+    "typeDescription": "D??bito",
     "nature": "Income",
     "date": "2019-03-01T00:00:00",
     "time": "15:30:00",
@@ -372,7 +372,7 @@ None
     "cpf": "12345678901",
     "cardNumber": "5432****8765",
     "storeOwner": "MARIA SILVA",
-    "storeName": "MERCEARIA 3 IRMÃOS"
+    "storeName": "MERCEARIA 3 IRM??OS"
   }
 ]
 ```
@@ -405,7 +405,7 @@ None
 
 Retrieve all transactions for a specific store.
 
-**🔒 Authentication Required**
+**???? Authentication Required**
 
 **Endpoint:**
 ```http
@@ -435,7 +435,7 @@ Accept: application/json
   {
     "id": 1,
     "type": "1",
-    "typeDescription": "Débito",
+    "typeDescription": "D??bito",
     "nature": "Income",
     "date": "2019-03-01T00:00:00",
     "time": "14:13:58",
@@ -443,8 +443,8 @@ Accept: application/json
     "signedAmount": 142.00,
     "cpf": "09620676017",
     "cardNumber": "4753****3153",
-    "storeOwner": "JOÃO MACEDO",
-    "storeName": "BAR DO JOÃO"
+    "storeOwner": "JO??O MACEDO",
+    "storeName": "BAR DO JO??O"
   }
 ]
 ```
@@ -460,7 +460,7 @@ Accept: application/json
 
 Retrieve all stores with their calculated balances and transaction lists.
 
-**🔒 Authentication Required**
+**???? Authentication Required**
 
 **Endpoint:**
 ```http
@@ -477,7 +477,7 @@ Accept: application/json
 ```json
 [
   {
-    "storeName": "BAR DO JOÃO",
+    "storeName": "BAR DO JO??O",
     "totalBalance": 350.00,
     "totalIncome": 500.00,
     "totalExpenses": 150.00,
@@ -486,7 +486,7 @@ Accept: application/json
       {
         "id": 1,
         "type": "1",
-        "typeDescription": "Débito",
+        "typeDescription": "D??bito",
         "nature": "Income",
         "date": "2019-03-01T00:00:00",
         "time": "14:13:58",
@@ -494,13 +494,13 @@ Accept: application/json
         "signedAmount": 142.00,
         "cpf": "09620676017",
         "cardNumber": "4753****3153",
-        "storeOwner": "JOÃO MACEDO",
-        "storeName": "BAR DO JOÃO"
+        "storeOwner": "JO??O MACEDO",
+        "storeName": "BAR DO JO??O"
       }
     ]
   },
   {
-    "storeName": "MERCEARIA 3 IRMÃOS",
+    "storeName": "MERCEARIA 3 IRM??OS",
     "totalBalance": 245.00,
     "totalIncome": 450.00,
     "totalExpenses": 205.00,
@@ -532,7 +532,7 @@ totalBalance = totalIncome - totalExpenses
 
 Retrieve overall system statistics.
 
-**🔒 Authentication Required**
+**???? Authentication Required**
 
 **Endpoint:**
 ```http
@@ -551,8 +551,8 @@ Accept: application/json
   "totalTransactions": 21,
   "totalStores": 4,
   "totalBalance": 1450.50,
-  "biggestStore": "BAR DO JOÃO",
-  "smallestStore": "LOJA DO Ó - FILIAL"
+  "biggestStore": "BAR DO JO??O",
+  "smallestStore": "LOJA DO ?? - FILIAL"
 }
 ```
 
@@ -579,11 +579,11 @@ Accept: application/json
 
 ---
 
-### 7. Get All Transactions (Paginated) ⭐ NEW
+### 7. Get All Transactions (Paginated) ??? NEW
 
 Retrieve all transactions with pagination support. Ideal for handling large datasets efficiently.
 
-**🔒 Authentication Required**
+**???? Authentication Required**
 
 **Endpoint:**
 ```http
@@ -624,8 +624,8 @@ GET /api/cnab/transactions/paged?pageNumber=999&pageSize=10  # Auto-adjusts to l
       "signedAmount": -142.00,
       "cpf": "09620676017",
       "cardNumber": "4753****3153",
-      "storeOwner": "JOÃO MACEDO",
-      "storeName": "BAR DO JOÃO"
+      "storeOwner": "JO??O MACEDO",
+      "storeName": "BAR DO JO??O"
     }
   ],
   "pageNumber": 1,
@@ -651,11 +651,11 @@ GET /api/cnab/transactions/paged?pageNumber=999&pageSize=10  # Auto-adjusts to l
 
 ---
 
-### 8. Get Store Transactions (Paginated) ⭐ NEW
+### 8. Get Store Transactions (Paginated) ??? NEW
 
 Retrieve paginated transactions for a specific store.
 
-**🔒 Authentication Required**
+**???? Authentication Required**
 
 **Endpoint:**
 ```http
@@ -677,7 +677,7 @@ GET /api/cnab/store/{storeName}/paged?pageNumber=1&pageSize=10
 
 **Example Requests:**
 ```bash
-# Get first page of "BAR DO JOÃO" with 10 items
+# Get first page of "BAR DO JO??O" with 10 items
 GET /api/cnab/store/BAR%20DO%20JO%C3%83O/paged?pageNumber=1&pageSize=10
 
 # Get page 2 with 25 items per page
@@ -694,7 +694,7 @@ GET /api/cnab/store/CAF%C3%89%20DO%20JOS%C3%89/paged?pageNumber=1&pageSize=10
     {
       "id": 1,
       "type": "1",
-      "typeDescription": "Débito",
+      "typeDescription": "D??bito",
       "nature": "Income",
       "date": "2019-03-01T00:00:00",
       "time": "14:13:58",
@@ -702,8 +702,8 @@ GET /api/cnab/store/CAF%C3%89%20DO%20JOS%C3%89/paged?pageNumber=1&pageSize=10
       "signedAmount": 142.00,
       "cpf": "09620676017",
       "cardNumber": "4753****3153",
-      "storeOwner": "JOÃO MACEDO",
-      "storeName": "BAR DO JOÃO"
+      "storeOwner": "JO??O MACEDO",
+      "storeName": "BAR DO JO??O"
     }
   ],
   "pageNumber": 1,
@@ -736,7 +736,7 @@ GET /api/cnab/store/CAF%C3%89%20DO%20JOS%C3%89/paged?pageNumber=1&pageSize=10
 
 ---
 
-## 🔧 Request/Response Examples
+## ???? Request/Response Examples
 
 ### cURL Examples
 
@@ -1267,7 +1267,7 @@ foreach (var store in balances)
 
 ---
 
-## ❌ Error Handling
+## ??? Error Handling
 
 ### HTTP Status Codes
 
@@ -1347,7 +1347,7 @@ foreach (var store in balances)
 
 ---
 
-## 📦 Postman Collection
+## ???? Postman Collection
 
 ### Import Collection
 
@@ -1507,9 +1507,9 @@ foreach (var store in balances)
               }
             ],
             "url": {
-              "raw": "{{base_url}}/cnab/store/BAR DO JOÃO",
+              "raw": "{{base_url}}/cnab/store/BAR DO JO??O",
               "host": ["{{base_url}}"],
-              "path": ["cnab", "store", "BAR DO JOÃO"]
+              "path": ["cnab", "store", "BAR DO JO??O"]
             }
           }
         },
@@ -1587,24 +1587,9 @@ The collection includes these variables (automatically managed):
 
 ---
 
-## 🔗 Additional Resources
+## ???? Additional Resources
 
 - **Swagger UI**: http://localhost:5099/swagger
 - **OpenAPI Spec**: http://localhost:5099/swagger/v1/swagger.json
-- **GitHub Repository**: [Your Repo URL]
+- **GitHub Repository**: https://github.com/edsonmata/cnab-processor
 - **API Status Page**: http://localhost:5099/api/health
-
----
-
-## 📞 Support
-
-For issues or questions:
-- Create an issue on GitHub
-- Email: your.email@example.com
-- LinkedIn: [Your Profile]
-
----
-
-<div align="center">
-  <p>Built with ❤️ for ByCoders Technical Challenge</p>
-</div>
