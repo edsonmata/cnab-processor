@@ -1,6 +1,6 @@
 # CNAB Processor
 
-Full-stack app for the ByCoders CNAB challenge: upload fixed-width CNAB files, parse, store in SQL Server, and list transactions per store with balances.
+Full-stack CNAB processor: upload fixed-width CNAB files, parse them, import into SQL Server, and explore transactions and store balances via REST API and React UI.
 
 ## Features
 - CNAB upload (.txt) with validation and parsing
