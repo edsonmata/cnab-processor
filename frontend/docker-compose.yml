@@ -1,0 +1,29 @@
+# ========================================
+# Docker Compose - FRONTEND
+# Arquivo: frontend/docker-compose.yml
+# Sobe: Frontend apenas (assume que backend está em localhost:5099)
+# ========================================
+
+services:
+  # ========================================
+  # FRONTEND
+  # ========================================
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Configure API URL - mude se necessário
+        - VITE_API_URL=http://localhost:5099/api
+    container_name: cnab-frontend
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3000:80"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped

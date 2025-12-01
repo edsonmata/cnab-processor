@@ -1,0 +1,33 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE / tooling
+.vscode/
+.idea/
+*.user
+*.suo
+
+# .NET build output
+bin/
+obj/
+*.db
+*.mdf
+*.ldf
+*.log
+
+# Logs
+logs/
+**/logs/
+
+# Node
+node_modules/
+
+# Build artifacts
+.vite/
+.vite-temp/
+dist/
+build/
+coverage/
+coverage-report/
+

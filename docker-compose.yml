@@ -1,0 +1,78 @@
+# ========================================
+# Docker Compose - DEFINITIVO
+# Arquivo: cnab-processor/docker-compose.yml
+# ========================================
+
+services:
+  # ========================================
+  # SQL SERVER
+  # ========================================
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: cnab-sqlserver
+    hostname: sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - cnab-network
+    restart: unless-stopped
+
+  # ========================================
+  # BACKEND (API)
+  # ========================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: cnab-backend
+    hostname: backend
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=CnabDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;MultipleActiveResultSets=true;Encrypt=False;ConnectRetryCount=10;ConnectRetryInterval=5
+    ports:
+      - "5099:80"
+    depends_on:
+      - sqlserver
+    networks:
+      - cnab-network
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+  # ========================================
+  # FRONTEND (React + Vite)
+  # ========================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:5099/api
+    container_name: cnab-frontend
+    hostname: frontend
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - cnab-network
+    restart: unless-stopped
+
+volumes:
+  sqlserver_data:
+    driver: local
+    name: cnab_sqlserver_data
+
+networks:
+  cnab-network:
+    driver: bridge
+    name: cnab_network

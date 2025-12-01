@@ -1,0 +1,64 @@
+# ========================================
+# .dockerignore - BACKEND (ATUALIZADO)
+# Arquivo: backend/.dockerignore
+# ========================================
+
+# Build outputs
+**/bin/
+**/obj/
+**/out/
+**/publish/
+
+# Tests (NÃO copiar para Docker)
+tests/
+**/Tests/
+**/*Tests/
+**/*.Tests/
+**/*Test.cs
+**/*Tests.cs
+TestResults/
+*.trx
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.cache
+
+# Logs
+logs/
+*.log
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# NuGet
+*.nupkg
+packages/
+
+# Docker
+**/Dockerfile*
+**/docker-compose*
+.dockerignore
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+README.md
+docs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary
+**/tmp/
+**/temp/
